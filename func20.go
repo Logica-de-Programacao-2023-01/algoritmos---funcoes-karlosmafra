@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 func main() {
@@ -18,20 +17,25 @@ func main() {
 		lista = append(lista, valor)
 	}
 
-	var alf, err = alfabetica(lista)
+	var m5, err = maior5(lista)
 
 	if err != nil {
 		fmt.Println("ERRO:", err)
 	} else {
-		fmt.Println(alf)
+		fmt.Println(m5)
 	}
 }
 
-func alfabetica(lista []string) ([]string, error) {
+func maior5(lista []string) ([]string, error) {
 	if len(lista) == 0 {
 		return []string{}, fmt.Errorf("O slice está vazio")
 	} else {
-		sort.Strings(lista)
-		return lista, nil
+		var m5 = []string{}
+		for i := range lista {
+			if len(lista[i]) > 5 {
+				m5 = append(m5, lista[i])
+			}
+		}
+		return m5, nil
 	}
 }
